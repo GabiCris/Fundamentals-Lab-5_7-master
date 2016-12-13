@@ -19,14 +19,16 @@ class ClientsControllerUndo(ClientsController):
     def client_ctrl_remove(self, clientId):
         client = ClientsController.client_searchById(self, clientId)
         rentalsList = self._rentalsController.filter_rentals(None, client, None)
-        
         ClientsController.client_ctrl_remove(self, clientId)
-        for rental in rentalsList:
-            self._rentalsController.rental_ctrl_remove(rental)
+
+        self._rentalsController.rental_ctr_removeByClient(client)
+            
+        print(self._undoController._index)
         
         undo = FunctionCall(self.client_ctrl_add, client)
         redo = FunctionCall(self.client_ctrl_remove, clientId)
-        opList =[Operation(undo, redo)]
+        opList =[]
+        opList.append(Operation(undo,redo))
         
         for rental in rentalsList:
             undoRental = FunctionCall(self._rentalsController.rental_ctrl_add, rental)
@@ -35,6 +37,7 @@ class ClientsControllerUndo(ClientsController):
             opList.append(newOp)
         
         self._undoController.add_operationList(opList)
+
         
     def client_ctrl_update(self, clientId, newClient):
         oldClient = ClientsController.client_searchById(self, clientId)

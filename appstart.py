@@ -12,6 +12,7 @@ from _datetime import datetime
 from Ctrl.BooksControllerUNDO import BooksControllerUndo
 from Ctrl.UndoController import UndoController
 from Ctrl.ClientsControllerUNDO import ClientsControllerUndo
+from Ctrl.RentalsControllerUNDO import RentalsControllerUndo
 
 booksRepo = bookList()
 clientsRepo = clients()
@@ -53,15 +54,13 @@ rentalsRepo._rentalList[6].returnBook(datetime(12,10,10))
 rentalsRepo.rentBook(rental("8", "2", "16",datetime(10,10,10),datetime(11,11,11)))
 
 undoController = UndoController()
-booksCtrl = BooksController(booksRepo)
-clientsCtrl = ClientsController(clientsRepo)
-rentalsCtrl = RentalsController(rentalsRepo, booksRepo, clientsRepo)
-clientsCtrlUndo = ClientsControllerUndo(undoController, rentalsCtrl, clientsRepo)
-booksCtrlUndo = BooksControllerUndo(undoController,rentalsCtrl, booksRepo)
+rentalsCtrlUndo = RentalsControllerUndo(undoController, rentalsRepo, booksRepo, clientsRepo)
+clientsCtrlUndo = ClientsControllerUndo(undoController, rentalsCtrlUndo, clientsRepo)
+booksCtrlUndo = BooksControllerUndo(undoController,rentalsCtrlUndo, booksRepo)
 
 
-UImenu = ui(booksCtrlUndo, clientsCtrl, rentalsCtrl)
-#UImenu.menu()
+UImenu = ui(booksCtrlUndo, clientsCtrlUndo, rentalsCtrlUndo, undoController)
+UImenu.menu()
 '''
 booksCtrlUndo.book_ctrl_add(book("123","War and Peace","Classic","Tolstoy"))
 print(booksRepo, '\nBOOK ADD\n')
@@ -87,7 +86,7 @@ print(undoController._index,'\n',booksRepo)
 undoController.redo()
 print(undoController._index,'\n',booksRepo)
 '''
-
+'''
 print(100*'#', '\nClient ADD\n')
 clientsCtrlUndo.client_ctrl_add(client("199", "Gigel Sifilis"))
 print("\n", clientsRepo)
@@ -104,6 +103,7 @@ undoController.undo()
 print("\n", clientsRepo, "\n", rentalsRepo)
 undoController.redo()
 print("\n", clientsRepo, "\n", rentalsRepo)
+'''
 
 '''
 UImenu.f_BooksIntervalRented()
