@@ -7,10 +7,11 @@ from builtins import AssertionError
 # TODO: add specifications and tests
 
 class ui:     
-    def __init__(self, b, c, r):
+    def __init__(self, b, c, r, undo):
         self._books = b
         self._clients = c
         self._rentals = r
+        self._undoCtrl = undo
     
     @staticmethod
     def printMenu():
@@ -24,6 +25,8 @@ class ui:
         string += '\t 7 - Search Books\n'
         string += '\t 8 - Search Clients\n'
         string += '\t 9 - Show Statistics\n'
+        string += '\t 10 - Undo\n'
+        string += '\t 11 - Redo\n'
         string += '\t 0 - Exit\n'
         print(string)
     
@@ -37,7 +40,9 @@ class ui:
                         '6':ui.f_return,
                         '7':ui.search_books,
                         '8':ui.search_clients,
-                        '9':ui.statistics_call}
+                        '9':ui.statistics_call,
+                        '10':ui.f_undo,
+                        '11':ui.f_redo}
         while alive:
             ui.printMenu()
             try:
@@ -54,11 +59,11 @@ class ui:
     def get_command():
         try:
             cmd = int(input("Please input command: "))
-            assert cmd in range (0,10)
+            assert cmd in range (0,12)
         except AssertionError:
             raise Exception("There is no command with the specified number.")
         except:
-            raise Exception("Please input an integer with value between 0 and 7!")
+            raise Exception("Please input an integer with value between 0 and 11!")
         else:
             return str(cmd)
             
@@ -97,6 +102,15 @@ class ui:
         except:
             raise Exception("Invalid Data")
         return name
+    @staticmethod
+    def get_clientfull():
+        try:
+            id = int(input("Client ID: "))
+            name = input("Client name: ")
+        except:
+            raise Exception("Invalid Data")
+        return client(str(id), name)
+    
     
     def f_add(self, *args):
         print(ui.print_add_choices())
@@ -108,7 +122,7 @@ class ui:
                 print (e)
         if cmd == '2':
             try:
-                self._clients.client_ctrl_add(ui.get_client())
+                self._clients.client_ctrl_add(ui.get_clientfull())
             except Exception as e:
                 print(e)
     
@@ -357,6 +371,17 @@ class ui:
             self.f_AuthorMostPopular()
         if cmd == '5':
             self.f_LateRentals()
+            
+            
+    '''    METHOD FOR UNDO/REDO FUNCTIONALITY
+    '''
+    def f_undo(self):
+        print(self._undoCtrl._index)
+        self._undoCtrl.undo()
+    
+    def f_redo(self):
+        print(self._undoCtrl._index)
+        self._undoCtrl.redo()
             
    
 '''      

@@ -10,7 +10,7 @@ class UndoController:
         if self.isRecorded() == False:
             return
         #clear operations list of previous undo's before adding a new op
-        self._operations = self._operations[:self._index+1]
+        self._operations = self._operations[0:self._index+1]
         
         self._operations.append(operationList)
         self._index += 1

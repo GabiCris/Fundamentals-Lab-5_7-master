@@ -32,5 +32,5 @@ class clients:
     @staticmethod
     def verifyClient(l, aidi):
         for entry in l:
-            if entry._clientId == aidi:
+            if entry.getId() == aidi:
                 raise ValueError ("There is already a client with that ID!")
