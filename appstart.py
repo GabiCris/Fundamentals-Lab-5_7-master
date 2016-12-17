@@ -1,9 +1,6 @@
 from Repository.BooksRepo import bookList
 from Repository.ClientsRepo import clients
 from Repository.RentalsRepo import rentalList
-from Ctrl.BooksController import BooksController
-from Ctrl.ClientsController import ClientsController
-from Ctrl.RentalsController import RentalsController
 from menu.ui import ui
 from classes.books import book
 from classes.clients import client
@@ -60,7 +57,7 @@ booksCtrlUndo = BooksControllerUndo(undoController,rentalsCtrlUndo, booksRepo)
 
 
 UImenu = ui(booksCtrlUndo, clientsCtrlUndo, rentalsCtrlUndo, undoController)
-UImenu.menu()
+#UImenu.menu()
 '''
 booksCtrlUndo.book_ctrl_add(book("123","War and Peace","Classic","Tolstoy"))
 print(booksRepo, '\nBOOK ADD\n')
