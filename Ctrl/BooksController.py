@@ -13,7 +13,7 @@ class BooksController:
     args is a list/touple with 4 elements: 0- id, 1- title, 2- desc, 3- author
     '''
     def book_ctrl_update(self, bookId, args):
-        self._Books_repo.findBook(bookId).updateBook(args[0],args[1], args[2])
+        self._Books_repo.updateBook(bookId, args)
         
     def book_SearchById(self, searchId):
         return self._Books_repo.findBook(searchId)

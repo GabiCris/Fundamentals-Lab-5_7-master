@@ -305,7 +305,7 @@ class ui:
     
     def search_books(self, *args):
         print(ui.print_search_books())
-        cmd = ui.get_cmd14()
+        cmd = ui.get_cmd15()
         if cmd == '1':
             searchId = ui.get_id()
             print(self._books.book_SearchById(searchId))
@@ -376,11 +376,9 @@ class ui:
     '''    METHOD FOR UNDO/REDO FUNCTIONALITY
     '''
     def f_undo(self):
-        print(self._undoCtrl._index)
         self._undoCtrl.undo()
     
     def f_redo(self):
-        print(self._undoCtrl._index)
         self._undoCtrl.redo()
             
    

@@ -22,7 +22,8 @@ class RentalsController:
     def rental_ctr_removeByClient(self, client):
         self.__Rentals_repo.removeRentalByClient(client)
         
-        
+    
+    
     def __str__(self):
         return str(self.__Rentals_repo)
     

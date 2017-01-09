@@ -20,3 +20,4 @@ class BookRepoTest(unittest.TestCase):
         self.assertEqual(self._repo.findBookByAuthor(book1.getauthor()), [])
         #self.assertRaises(self._repo.removeBook("11"), book)
         self.assertEqual(len(self._repo._bookList), 0)
+        

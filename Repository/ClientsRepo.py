@@ -21,7 +21,13 @@ class clients:
             if namestr.lower() in client.getName().lower():
                 matchingClients.append(client)
         return matchingClients
-        
+    
+    def updateClients(self, clId, cid, name):
+        self.findClient(clId).updateClient(cid, name)    
+    
+    def getAll(self):
+        return self._clientList
+    
     def __str__(self):
         stri = ''
         for client in self._clientList:

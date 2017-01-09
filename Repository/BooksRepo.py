@@ -18,7 +18,8 @@ class bookList:
         for book in self._bookList:
             if book._bookId == bookId:
                 self._bookList.remove(book)
-                break
+                return
+        raise Exception("No book with that ID!")
     
     def findBook (self, searchId):
         for book in self._bookList:
@@ -53,8 +54,11 @@ class bookList:
             string += '\n'
         return string
     
+    def getAll(self):
+        return self._bookList
         
-        
+    def updateBook(self, bookId, args):
+        self.findBook(bookId).updateBook(args[0], args[1], args[2])
         
 class bookListExceptions(Exception):
     def __init__(self, message):

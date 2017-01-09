@@ -34,7 +34,12 @@ class rentalList:
     def removeRentalByClient(self, client):
         self.rentalList = [rental for rental in self._rentalList if rental.get_rentalClientId()!= client.getId()]
             
-                
+    def rentalsNumber(self):
+        return len(self._rentalList)
+    
+    def getAll(self):
+        return self._rentalList
+    
     def __str__(self):
         msg = ''
         for rental in self._rentalList:

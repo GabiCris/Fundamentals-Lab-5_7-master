@@ -9,7 +9,7 @@ class ClientsController:
         self.__Clients_repo.removeClient(clientId)
     
     def client_ctrl_update(self, clientId, newClient):
-        self.__Clients_repo.findClient(clientId).updateClient(newClient.getId(), newClient.getName())
+        self.__Clients_repo.updateClients(clientId, newClient.getId(), newClient.getName())
     
     def client_searchById(self, searchId):
         return self.__Clients_repo.findClient(searchId)

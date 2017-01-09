@@ -22,8 +22,6 @@ class ClientsControllerUndo(ClientsController):
         ClientsController.client_ctrl_remove(self, clientId)
 
         self._rentalsController.rental_ctr_removeByClient(client)
-            
-        print(self._undoController._index)
         
         undo = FunctionCall(self.client_ctrl_add, client)
         redo = FunctionCall(self.client_ctrl_remove, clientId)
