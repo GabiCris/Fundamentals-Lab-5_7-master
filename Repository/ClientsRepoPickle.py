@@ -24,9 +24,9 @@ class ClientsRepoFilePicke(clients):
         f = open(self._fileName, "rb")
         
         try:
-            self._data = pickle.load(f)
+            self._clientList = pickle.load(f)
         except EOFError:
-            self._data = []
+            self._clientList = []
         except Exception as e:
             raise e
         finally:
@@ -34,5 +34,5 @@ class ClientsRepoFilePicke(clients):
     
     def storeToFile(self):
         f = open(self._fileName, "wb")
-        pickle.dump(self._data, f)
+        pickle.dump(self._clientList, f)
         f.close()

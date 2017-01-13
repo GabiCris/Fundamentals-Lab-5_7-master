@@ -19,9 +19,9 @@ class RentalsRepoFilePickle(rentalList):
         f = open(self._fileName, "rb")
         
         try:
-            self._data = pickle.load(f)
+            self._rentalList = pickle.load(f)
         except EOFError:
-            self._data = []
+            self._rentalList = []
         except Exception as e:
             raise e
         finally:
@@ -29,5 +29,5 @@ class RentalsRepoFilePickle(rentalList):
     
     def storeToFile(self):
         f = open(self._fileName, "wb")
-        pickle.dump(self._data, f)
+        pickle.dump(self._rentalList, f)
         f.close()

@@ -25,9 +25,9 @@ class BooksRepoFilePickle(bookList):
         f = open(self._fileName, "rb")
         
         try:
-            self._data = pickle.load(f)
+            self._bookList = pickle.load(f)
         except EOFError:
-            self._data = []
+            self._bookList = []
         except Exception as e:
             raise e
         finally:
@@ -35,5 +35,5 @@ class BooksRepoFilePickle(bookList):
     
     def storeToFile(self):
         f = open(self._fileName, "wb")
-        pickle.dump(self._data, f)
+        pickle.dump(self._bookList, f)
         f.close()
