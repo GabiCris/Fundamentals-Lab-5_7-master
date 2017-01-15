@@ -1,9 +1,10 @@
 from classes.books import book
+from iterStruct.StructureLab9 import iterStruct
 
 class bookList:
     def __init__(self):
-        self._bookList = []
-    
+        #self._bookList = []
+        self._bookList = iterStruct()
     @staticmethod
     def _verifyId (l, bookId):
         for entry in l:
