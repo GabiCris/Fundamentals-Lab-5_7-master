@@ -1,6 +1,7 @@
+from iterStruct.StructureLab9 import iterStruct
 class clients:
     def __init__(self):
-        self._clientList = []
+        self._clientList = iterStruct()
     
     def addClient(self, client):
         clients.verifyClient(self._clientList, client._clientId)

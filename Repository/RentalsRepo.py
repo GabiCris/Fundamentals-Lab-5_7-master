@@ -1,9 +1,10 @@
 from classes.rental import rental
 from _datetime import datetime
+from iterStruct.StructureLab9 import iterStruct
 
 class rentalList:
     def __init__(self):
-        self._rentalList = []
+        self._rentalList = iterStruct()
     
     def rentBook (self, rental):
         #TODO VERIFY EXISTANCE OF CLIENT AND BOOK
