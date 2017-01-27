@@ -1,5 +1,6 @@
 from classes.books import book
 from _datetime import datetime
+from iterStruct.StructureLab9 import iterStruct
 
 class RentalsController:
     def __init__(self, repo, booksRepo, clientsRepo):
@@ -53,15 +54,17 @@ class RentalsController:
     '''
     method that returns a sorted list with the most rented books by times they were rented
     '''
+   
     def most_rented_books_times (self):
-        result = []
+        result = iterStruct()
         
         for book in self.__Books_repo._bookList:
             rentalsList = self.filter_rentals(book, None)
             if len(rentalsList):
                 result.append(BookTimeRented(book, len(rentalsList)))
-                
-        result.sort(reverse=True)
+        
+        
+        result.sortIter(lambda x,y: x.get_timesRented()< y.get_timesRented())
         return result
     '''
     method that returns a sorted list with the books that were rented for the longest amount of time
